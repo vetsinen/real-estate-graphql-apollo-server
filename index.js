@@ -1,4 +1,5 @@
-const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer, gql } = require('apollo-server')
+const fs = require('fs')
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -9,8 +10,18 @@ const typeDefs = gql`
   # This "Room" type defines the queryable fields for every book in our data source.
   type Room {
     district: String
-    title: String
+    adress: String
+    description: String
+    mstation: String
     price: Int
+    quanity: Int
+    square: Int
+    floor: Int
+    totalFloors: Int
+    id: String
+    link: String
+    
+    
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -21,23 +32,12 @@ const typeDefs = gql`
   }
 `;
 
-const rooms = [
-    {
-        "district": "solomenskiy",
-        "title": "Pobedy, 36",
-        "price": 12000
-    },
-    {
-        "district": "svytoshinskiy",
-        "title": "Bulahovskogo 6",
-        "price": 9000
-    },
-    {
-        "district": "pechersky",
-        "title": "Gagarina 9",
-        "price": 14000
-    }
-]
+
+const data = fs.readFileSync('./rooms.json',
+    {encoding:'utf8', flag:'r'})
+const rooms = JSON.parse(data)
+console.log(rooms[0])
+
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
