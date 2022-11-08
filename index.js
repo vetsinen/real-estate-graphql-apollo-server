@@ -20,8 +20,6 @@ const typeDefs = gql`
     totalFloors: Int
     id: String
     link: String
-    
-    
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -36,7 +34,6 @@ const typeDefs = gql`
 const data = fs.readFileSync('./rooms.json',
     {encoding:'utf8', flag:'r'})
 const rooms = JSON.parse(data)
-console.log(rooms[0])
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
